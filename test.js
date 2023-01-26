@@ -1,12 +1,18 @@
-const mainDirectory = document.querySelector('#main-directory').value;
+const go = document.querySelector('#go');
+
+go.addEventListener('click', () => {
+
+let mainDirectory = document.querySelector('#main-directory').value;
 const rootName = document.querySelector('#root-name').value;
 let additionalEdls = document.querySelector('#additional-edls').value;
 const project = document.querySelector('#project').value;
 const mainTrackExcluded = document.querySelector('#main-track-excluded').checked;
-const emails = document.querySelector('#emails').value;
+// const emails = document.querySelector('#emails').value;
 const updateEpisode = document.querySelector('#update-episode').checked;
-const go = document.querySelector('#go');
+let result = document.getElementById("result");
 let additionalEdls2 = []
+
+mainDirectory = mainDirectory.replace(/\\/g, '/');
 
 additionalEdls = additionalEdls.split(',');
 
@@ -14,7 +20,7 @@ for (let i = 0; i < additionalEdls.length; i++) {
   additionalEdls2.push('{MAIN_DIRECTORY}/{ROOT_NAME}_'+additionalEdls[i]+'.edl.format(**locals())');
 }
 
-go.addEventListener('click', () => {
+
   const data = `
   import sys
   import os
@@ -26,7 +32,7 @@ go.addEventListener('click', () => {
   WORK_DIR = os.getenv('WORK_DIR', 'C:/mty-process-editorial/')
   sys.path.append(WORK_DIR)
 
-  ADDITIONAL_EDLS = [${additionalEdls2}]
+  ADDITIONAL_EDLS = [${additionalEdls != 0 ? additionalEdls2 : ''}]
 
 
 
@@ -40,14 +46,13 @@ go.addEventListener('click', () => {
       '${mainDirectory}',
       ${mainTrackExcluded},
       ADDITIONAL_EDLS,
-      '${emails}',
+      '',
       ${updateEpisode},
       3
   ]
 
   execfile('%s/process_editorial.py' % WORK_DIR)
     `
-
 console.log(data);
-alert('Copy the info from the console and paste it in the Shotgrid Python Console')
+//alert('Copy the info from the console and paste it in the Shotgrid Python Console')
 });
