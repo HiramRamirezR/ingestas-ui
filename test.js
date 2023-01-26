@@ -49,4 +49,5 @@ go.addEventListener('click', () => {
     `
 
 console.log(data);
+alert('Copy the info from the console and paste it in the Shotgrid Python Console')
 });
