@@ -1,36 +1,8 @@
 body {
-  font-family: 'Nunito', sans-serif;
   margin: 0;
 }
 
-#wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-
-  #card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(207, 207, 207);
-    width: 400px;
-    padding: 20px;
-    border-radius: 20px;
-  }
-}
-
-label {
-  display: block;
-  // margin-bottom: 5px;
-  font-size: 1rem;
-}
-
 input, select {
-  display: block;
   margin: 15px;
   padding: 5px;
   width: 60%;
@@ -41,6 +13,10 @@ details {
   width: 40%;
   font-size: small;
   text-align: center;
+}
+
+#result {
+  font-size: .7em;
 }
 
 #go {

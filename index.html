@@ -5,52 +5,57 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="#" type="image/x-icon">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <title>Ingestas</title>
 </head>
 <body>
 
-  <div id="wrapper">
+  <div class="container">
     <h1>Mighty Intakes</h1>
-    <div id="card">
-      <label for="main-directory">Main directory</label>
-      <input type="text" id="main-directory"><br>
+    <div class="row">
+      <div class="col-6">
+          <label for="main-directory">Main directory</label>
+          <input type="text" id="main-directory"><br>
 
-      <label for="root-name">Root name</label>
-      <input type="text" id="root-name"><br>
+          <label for="root-name">Root name</label>
+          <input type="text" id="root-name"><br>
 
-      <label for="additional-edls">Additional edls</label>
-      <details>
-        <summary>Info</summary>
-        <p>If you have more edls to be ingested, write them separated by a comma without spaces, like this: track01,track02,track03 . If you don't have more edls to be ingested, just leave it blank. </p>
-      </details>
-      <input type="text" id="additional-edls"><br>
+          <label for="additional-edls">Additional edls</label>
+          <details>
+            <summary>Info</summary>
+            <p>If you have more edls to be ingested, write them separated by a comma without spaces, like this: track01,track02,track03 . If you don't have more edls to be ingested, just leave it blank. </p>
+          </details>
+          <input type="text" id="additional-edls"><br>
 
-      <label for="project">Project</label>
-      <select name="project" id="project">
-        <option value="PIC">PIC</option>
-        <option value="CASM">CASM</option>
-        <option value="MGDD">MGDD</option>
-        <option value="HPTL">HPTL</option>
-      </select><br>
+          <label for="project">Project</label>
+          <select name="project" id="project">
+            <option value="PIC">PIC</option>
+            <option value="CASM">CASM</option>
+            <option value="MGDD">MGDD</option>
+            <option value="HPTL">HPTL</option>
+          </select><br>
 
-      <label for="main-track-excluded">Do you need to exclude the main track?</label>
-      <input type="checkbox" id="main-track-excluded"><br>
+          <label for="main-track-excluded">Do you need to exclude the main track?</label>
+          <input type="checkbox" id="main-track-excluded"><br>
 
-      <!-- <label for="emails">email(s)</label>
-      <details>
-        <summary>Info</summary>
-        <p>If you want to send the email to more than one person, write them separated by a comma without spaces, like this: mail@mighty.mx,mail2@mighty.mx (only mighty emails are allowed). If you don't want to send the email, just leave it blank. </p>
-      </details>
-      <input type="text" id="emails"><br> -->
+          <!-- <label for="emails">email(s)</label>
+          <details>
+            <summary>Info</summary>
+            <p>If you want to send the email to more than one person, write them separated by a comma without spaces, like this: mail@mighty.mx,mail2@mighty.mx (only mighty emails are allowed). If you don't want to send the email, just leave it blank. </p>
+          </details>
+          <input type="text" id="emails"><br> -->
 
-      <label for="update-episode">Are you going to update the episode?</label>
-      <input type="checkbox" id="update-episode"><br>
+          <label for="update-episode">Are you going to update the episode?</label>
+          <input type="checkbox" id="update-episode"><br>
 
-      <button id="go">Go</button>
+
+          <button id="go">Go</button>
+      </div>
+      <div class="col-6">
+        <textarea name="" id="result" cols="100" rows="30">
+        </textarea>
+      </div>
     </div>
   </div>
 

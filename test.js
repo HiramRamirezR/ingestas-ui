@@ -1,4 +1,5 @@
 const go = document.querySelector('#go');
+let result = document.getElementById("result");
 
 go.addEventListener('click', () => {
 
@@ -9,7 +10,6 @@ const project = document.querySelector('#project').value;
 const mainTrackExcluded = document.querySelector('#main-track-excluded').checked;
 // const emails = document.querySelector('#emails').value;
 const updateEpisode = document.querySelector('#update-episode').checked;
-let result = document.getElementById("result");
 let additionalEdls2 = []
 
 mainDirectory = mainDirectory.replace(/\\/g, '/');
@@ -21,10 +21,8 @@ for (let i = 0; i < additionalEdls.length; i++) {
 }
 
 
-  const data = `
-  import sys
+  const data = `  import sys
   import os
-
 
   MAIN_DIRECTORY = '${mainDirectory}'
   ROOT_NAME = '${rootName}'
@@ -33,8 +31,6 @@ for (let i = 0; i < additionalEdls.length; i++) {
   sys.path.append(WORK_DIR)
 
   ADDITIONAL_EDLS = [${additionalEdls != 0 ? additionalEdls2 : ''}]
-
-
 
   sys.argv = [
       '{MAIN_DIRECTORY}/{ROOT_NAME}_track01.edl'.format(**locals()),
@@ -51,8 +47,8 @@ for (let i = 0; i < additionalEdls.length; i++) {
       3
   ]
 
-  execfile('%s/process_editorial.py' % WORK_DIR)
-    `
+  execfile('%s/process_editorial.py' % WORK_DIR)`
 console.log(data);
+result.value = data;
 //alert('Copy the info from the console and paste it in the Shotgrid Python Console')
 });
