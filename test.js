@@ -50,5 +50,7 @@ for (let i = 0; i < additionalEdls.length; i++) {
   execfile('%s/process_editorial.py' % WORK_DIR)`
 console.log(data);
 result.value = data;
-//alert('Copy the info from the console and paste it in the Shotgrid Python Console')
+result.select();
+document.execCommand('copy');
+alert('Script copied to clipboard! Just go and paste it in the Shotgrid Python Console.')
 });
