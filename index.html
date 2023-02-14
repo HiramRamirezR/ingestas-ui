@@ -21,7 +21,6 @@
           <select name="project" class="form-select bg-dark text-light border-light" id="project">
             <option value="PIC">PIC</option>
             <option value="CASM">CASM</option>
-            <option value="MGDD">MGDD</option>
             <option value="HPTL">HPTL</option>
           </select>
         </div>
@@ -43,7 +42,7 @@
 
         <div class="input-group mb-3">
           <span class="input-group-text bg-dark text-warning border-warning">Additional edls</span>
-          <input type="text" class="form-control bg-dark text-light border-light" placeholder="track02.edl,track03.edl" id="additional-edls">
+          <input type="file" class="form-control bg-dark text-light border-light" placeholder="track02.edl,track03.edl" id="additional-edls" accept=".edl" multiple>
           <details>
             <summary>?</summary>
             <p>If you don't have more edls, just leave it blank. </p>

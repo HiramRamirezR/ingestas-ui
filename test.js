@@ -7,23 +7,21 @@ go.addEventListener('click', () => {
 
   let mainDirectory = document.querySelector('#main-directory').value;
   const rootName = document.querySelector('#root-name').value;
-  let additionalEdls = document.querySelector('#additional-edls').value;
   const project = document.querySelector('#project').value;
   const mainTrackExcluded = document.querySelector('#main-track-excluded').checked;
-  let mainEdl = document.querySelector('#main-edl');
-  let mainEdlSplited = mainEdl.value.split('\\')
+  let mainEdl = document.querySelector('#main-edl').value.split('\\').at(-1);
+  let additionalEdls = document.querySelector('#additional-edls').files;
+  console.log(additionalEdls);
+  console.log(additionalEdls[0].name)
+  let additionalEdlsArr = [];
 // const emails = document.querySelector('#emails').value;
 const updateEpisode = document.querySelector('#update-episode').checked;
-let additionalEdls2 = []
 
 mainDirectory = mainDirectory.replace(/\\/g, '/');
 
-additionalEdls = additionalEdls.split(',');
-
 for (let i = 0; i < additionalEdls.length; i++) {
-  additionalEdls2.push(`'{MAIN_DIRECTORY}/{ROOT_NAME}_${additionalEdls[i]}.edl'.format(**locals()),`);
+  additionalEdlsArr.push(`'{MAIN_DIRECTORY}/{ROOT_NAME}_${additionalEdls[i].name}'.format(**locals()),`);
 }
-
 
   const data = `  import sys
   import os
@@ -35,11 +33,11 @@ for (let i = 0; i < additionalEdls.length; i++) {
   sys.path.append(WORK_DIR)
 
   ADDITIONAL_EDLS = [
-    ${additionalEdls != 0 ? additionalEdls2.join('\n') : ''}
+    ${additionalEdlsArr != 0 ? additionalEdlsArr.join('\n') : ''}
   ]
 
   sys.argv = [
-      '{MAIN_DIRECTORY}/{ROOT_NAME}_${mainEdlSplited.at(-1)}'.format(**locals()),
+      '{MAIN_DIRECTORY}/{ROOT_NAME}_${mainEdl}'.format(**locals()),
       '{MAIN_DIRECTORY}/{ROOT_NAME}.mp4'.format(**locals()),
       '{MAIN_DIRECTORY}/{ROOT_NAME}.wav'.format(**locals()),
       'S:/pipeline/pythonmodules/mty-framework-ffmpeg-master/bin/win/ffmpeg.exe',
