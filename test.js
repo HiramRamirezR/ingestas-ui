@@ -17,7 +17,7 @@ mainDirectory = mainDirectory.replace(/\\/g, '/');
 additionalEdls = additionalEdls.split(',');
 
 for (let i = 0; i < additionalEdls.length; i++) {
-  additionalEdls2.push('{MAIN_DIRECTORY}/{ROOT_NAME}_'+additionalEdls[i]+'.edl.format(**locals())');
+  additionalEdls2.push(`'{MAIN_DIRECTORY}/{ROOT_NAME}_${additionalEdls[i]}.edl'.format(**locals()),`);
 }
 
 
@@ -30,7 +30,9 @@ for (let i = 0; i < additionalEdls.length; i++) {
   WORK_DIR = os.getenv('WORK_DIR', 'C:/mty-process-editorial/')
   sys.path.append(WORK_DIR)
 
-  ADDITIONAL_EDLS = [${additionalEdls != 0 ? additionalEdls2 : ''}]
+  ADDITIONAL_EDLS = [
+    ${additionalEdls != 0 ? additionalEdls2.join('\n') : ''}
+  ]
 
   sys.argv = [
       '{MAIN_DIRECTORY}/{ROOT_NAME}_track01.edl'.format(**locals()),
@@ -48,9 +50,11 @@ for (let i = 0; i < additionalEdls.length; i++) {
   ]
 
   execfile('%s/process_editorial.py' % WORK_DIR)`
+
 console.log(data);
 result.value = data;
 result.select();
 document.execCommand('copy');
-alert('Script copied to clipboard! Just go and paste it in the Shotgrid Python Console.')
+// alert('Script copied to clipboard! Just go and paste it in the Shotgrid Python Console.')
+console.log(additionalEdls2);
 });
