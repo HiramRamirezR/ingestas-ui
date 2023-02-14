@@ -1,13 +1,17 @@
 const go = document.querySelector('#go');
 let result = document.getElementById("result");
 
+
 go.addEventListener('click', () => {
 
-let mainDirectory = document.querySelector('#main-directory').value;
-const rootName = document.querySelector('#root-name').value;
-let additionalEdls = document.querySelector('#additional-edls').value;
-const project = document.querySelector('#project').value;
-const mainTrackExcluded = document.querySelector('#main-track-excluded').checked;
+
+  let mainDirectory = document.querySelector('#main-directory').value;
+  const rootName = document.querySelector('#root-name').value;
+  let additionalEdls = document.querySelector('#additional-edls').value;
+  const project = document.querySelector('#project').value;
+  const mainTrackExcluded = document.querySelector('#main-track-excluded').checked;
+  let mainEdl = document.querySelector('#main-edl');
+  let mainEdlSplited = mainEdl.value.split('\\')
 // const emails = document.querySelector('#emails').value;
 const updateEpisode = document.querySelector('#update-episode').checked;
 let additionalEdls2 = []
@@ -35,7 +39,7 @@ for (let i = 0; i < additionalEdls.length; i++) {
   ]
 
   sys.argv = [
-      '{MAIN_DIRECTORY}/{ROOT_NAME}_track01.edl'.format(**locals()),
+      '{MAIN_DIRECTORY}/{ROOT_NAME}_${mainEdlSplited.at(-1)}'.format(**locals()),
       '{MAIN_DIRECTORY}/{ROOT_NAME}.mp4'.format(**locals()),
       '{MAIN_DIRECTORY}/{ROOT_NAME}.wav'.format(**locals()),
       'S:/pipeline/pythonmodules/mty-framework-ffmpeg-master/bin/win/ffmpeg.exe',
@@ -56,4 +60,5 @@ result.value = data;
 result.select();
 document.execCommand('copy');
 // alert('Script copied to clipboard! Just go and paste it in the Shotgrid Python Console.')
+// console.log(fs);
 });

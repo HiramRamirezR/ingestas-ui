@@ -37,23 +37,28 @@
         </div>
 
         <div class="input-group mb-3">
+          <span class="input-group-text bg-dark text-warning border-warning" for="main-edl">Main edl</span>
+          <input type="file" class="form-control bg-dark text-light border-light" placeholder="main.edl" id="main-edl" accept=".edl">
+        </div>
+
+        <div class="input-group mb-3">
           <span class="input-group-text bg-dark text-warning border-warning">Additional edls</span>
-          <input type="text" class="form-control bg-dark text-light border-light" placeholder="track02,track03" id="additional-edls">
+          <input type="text" class="form-control bg-dark text-light border-light" placeholder="track02.edl,track03.edl" id="additional-edls">
           <details>
             <summary>?</summary>
-            <p>If you have more edls to be ingested, write them separated by a comma without spaces. If not, just leave it blank. </p>
+            <p>If you don't have more edls, just leave it blank. </p>
           </details>
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text bg-dark text-warning border-warning">Do you need to exclude the main track?</span>
+          <span class="input-group-text bg-dark text-warning border-warning">Do you need to exclude the main edl?</span>
           <div class="input-group-text bg-dark text-warning border-warning">
             <input type="checkbox" class="form-check-input mt-0" id="main-track-excluded"><br>
           </div>
         </div>
 
         <div class="input-group mb3">
-          <span class="input-group-text bg-dark text-warning border-warning">Are you going to update the episode?</span>
+          <span class="input-group-text bg-dark text-warning border-warning">Are you going to update this episode?</span>
           <div class="input-group-text bg-dark text-warning border-warning">
             <input type="checkbox" class="form-check-input mt-0" id="update-episode"><br>
           </div>
