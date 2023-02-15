@@ -1,11 +1,8 @@
 const go = document.querySelector('#go');
 let result = document.getElementById("result");
-let clear = document.querySelector('#clear');
-
 
 
 go.addEventListener('click', () => {
-
 
 
   let mainDirectory = document.querySelector('#main-directory').value;
@@ -17,13 +14,22 @@ go.addEventListener('click', () => {
   console.log(additionalEdls.value);
   let additionalEdlsArr = [];
   let movMp4 = document.querySelector('#mov-mp4').value;
-// const emails = document.querySelector('#emails').value;
-const updateEpisode = document.querySelector('#update-episode').checked;
+  let email = document.querySelector('#email').value;
+  let sendEmail = document.querySelector('#send-email').checked
+  const updateEpisode = document.querySelector('#update-episode').checked;
+  const publishSequence = document.querySelector('#publish-sequence').checked
 
 mainDirectory = mainDirectory.replace(/\\/g, '/');
 
 for (let i = 0; i < additionalEdls.length; i++) {
   additionalEdlsArr.push(`'{MAIN_DIRECTORY}/{ROOT_NAME}_${additionalEdls[i].name}'.format(**locals()),`);
+}
+
+let emails = email.split(',')
+let emailsArr = []
+
+for (let i = 0; i < emails.length; i ++) {
+  emailsArr.push(emails[i].trim())
 }
 
   const data = `  import sys
@@ -47,11 +53,13 @@ for (let i = 0; i < additionalEdls.length; i++) {
       '${project} - Episode', '${project} - Sequence', '${project} - Shot',
       'S:/pipeline/pythonmodules/mty-framework-metasync-master',
       '${mainDirectory}',
-      ${mainTrackExcluded},
+      ${mainTrackExcluded ? 'True' : 'False'},
       additional_edls,
-      '',
-      ${updateEpisode},
-      3
+      '${emailsArr}',
+      ${sendEmail ? 'True' : 'False'},
+      3,
+      ${updateEpisode ? 'True' : 'False'},
+      ${publishSequence ? 'True' : 'False'}
   ]
 
   execfile('%s/process_editorial.py' % WORK_DIR)`

@@ -71,24 +71,38 @@
 
         <div class="input-group mb-3">
           <span class="input-group-text bg-dark text-warning border-warning" for="email">email(s)</span>
-          <input type="text" class="form-control bg-dark text-light border-light" placeholder="name@mighty.mx" id="email">
+          <input type="text" class="form-control bg-dark text-light border-light" placeholder="Multiple email addresses separated by comma." id="email">
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text bg-dark text-warning border-warning">Do you need to exclude the main edl?</span>
+          <span class="input-group-text bg-dark text-warning border-warning">Send notification email?</span>
+          <div class="input-group-text bg-dark text-warning border-warning">
+            <input type="checkbox" class="form-check-input mt-0" id="send-email">
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text bg-dark text-warning border-warning">Exclude main edl?</span>
           <div class="input-group-text bg-dark text-warning border-warning">
             <input type="checkbox" class="form-check-input mt-0" id="main-track-excluded">
           </div>
         </div>
 
-        <div class="input-group mb3">
-          <span class="input-group-text bg-dark text-warning border-warning">Are you going to update this episode?</span>
+        <div class="input-group mb-3">
+          <span class="input-group-text bg-dark text-warning border-warning">Update episode?</span>
           <div class="input-group-text bg-dark text-warning border-warning">
             <input type="checkbox" class="form-check-input mt-0" id="update-episode">
           </div>
         </div>
 
-          <div class="input-group mt-3 justify-content-center">
+        <div class="input-group mb-3">
+          <span class="input-group-text bg-dark text-warning border-warning">Publish sequence?</span>
+          <div class="input-group-text bg-dark text-warning border-warning">
+            <input type="checkbox" class="form-check-input mt-0" id="publish-sequence">
+          </div>
+        </div>
+
+          <div class="input-group mb-3 justify-content-center">
             <button class="btn btn-outline-warning" type="button" id="go">Generate script</button>
           </div>
 
