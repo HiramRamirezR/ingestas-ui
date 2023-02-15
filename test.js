@@ -1,8 +1,11 @@
 const go = document.querySelector('#go');
 let result = document.getElementById("result");
+let clear = document.querySelector('#clear');
+
 
 
 go.addEventListener('click', () => {
+
 
 
   let mainDirectory = document.querySelector('#main-directory').value;
@@ -11,9 +14,9 @@ go.addEventListener('click', () => {
   const mainTrackExcluded = document.querySelector('#main-track-excluded').checked;
   let mainEdl = document.querySelector('#main-edl').value.split('\\').at(-1);
   let additionalEdls = document.querySelector('#additional-edls').files;
-  console.log(additionalEdls);
-  console.log(additionalEdls[0].name)
+  console.log(additionalEdls.value);
   let additionalEdlsArr = [];
+  let movMp4 = document.querySelector('#mov-mp4').value;
 // const emails = document.querySelector('#emails').value;
 const updateEpisode = document.querySelector('#update-episode').checked;
 
@@ -32,20 +35,20 @@ for (let i = 0; i < additionalEdls.length; i++) {
   WORK_DIR = os.getenv('WORK_DIR', 'C:/mty-process-editorial/')
   sys.path.append(WORK_DIR)
 
-  ADDITIONAL_EDLS = [
+  additional_edls = [
     ${additionalEdlsArr != 0 ? additionalEdlsArr.join('\n') : ''}
   ]
 
   sys.argv = [
       '{MAIN_DIRECTORY}/{ROOT_NAME}_${mainEdl}'.format(**locals()),
-      '{MAIN_DIRECTORY}/{ROOT_NAME}.mp4'.format(**locals()),
+      '{MAIN_DIRECTORY}/{ROOT_NAME}.${movMp4}'.format(**locals()),
       '{MAIN_DIRECTORY}/{ROOT_NAME}.wav'.format(**locals()),
       'S:/pipeline/pythonmodules/mty-framework-ffmpeg-master/bin/win/ffmpeg.exe',
       '${project} - Episode', '${project} - Sequence', '${project} - Shot',
       'S:/pipeline/pythonmodules/mty-framework-metasync-master',
       '${mainDirectory}',
       ${mainTrackExcluded},
-      ADDITIONAL_EDLS,
+      additional_edls,
       '',
       ${updateEpisode},
       3
@@ -58,5 +61,4 @@ result.value = data;
 result.select();
 document.execCommand('copy');
 // alert('Script copied to clipboard! Just go and paste it in the Shotgrid Python Console.')
-// console.log(fs);
 });
