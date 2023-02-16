@@ -69,7 +69,7 @@ console.log(data);
 result.value = data;
 result.select();
 document.execCommand('copy');
-// alert('Script copied. Paste it in the Shotgrid Python Console.')
+alert('Script copied. Paste it in the Shotgrid Python Console.')
 });
 
 // # Path to the Main EDL file
