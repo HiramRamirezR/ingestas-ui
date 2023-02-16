@@ -18,6 +18,8 @@ go.addEventListener('click', () => {
   let addWatermark = document.querySelector('#add-watermark').checked
   const updateEpisode = document.querySelector('#update-episode').checked;
 
+  let defaultEmails = `${project.toLowerCase()}-production@mighty.mx,pipeline@mighty.mx`
+
 mainDirectory = mainDirectory.replace(/\\/g, '/');
 
 for (let i = 0; i < additionalEdls.length; i++) {
@@ -54,7 +56,7 @@ sys.argv = [
     MAIN_DIRECTORY,
     ${mainTrackExcluded ? 'True' : 'False'},
     additional_edls,
-    '${emailsArr}',
+    '${defaultEmails + ',' + emailsArr}',
     ${updateEpisode ? 'True' : 'False'},
     3,
     ${addWatermark ? 'True' : 'False'},
