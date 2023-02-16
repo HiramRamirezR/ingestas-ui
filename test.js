@@ -15,9 +15,8 @@ go.addEventListener('click', () => {
   let additionalEdlsArr = [];
   let movMp4 = document.querySelector('#mov-mp4').value;
   let email = document.querySelector('#email').value;
-  let sendEmail = document.querySelector('#send-email').checked
+  let addWatermark = document.querySelector('#add-watermark').checked
   const updateEpisode = document.querySelector('#update-episode').checked;
-  const publishSequence = document.querySelector('#publish-sequence').checked
 
 mainDirectory = mainDirectory.replace(/\\/g, '/');
 
@@ -32,13 +31,13 @@ for (let i = 0; i < emails.length; i ++) {
   emailsArr.push(emails[i].trim())
 }
 
-const data = `  import sys
+const data = `import sys
 import os
 
 MAIN_DIRECTORY = '${mainDirectory}'
 ROOT_NAME = '${rootName}'
 
-WORK_DIR = os.getenv('WORK_DIR', 'C:/mty-process-editorial/')
+WORK_DIR = os.getenv('WORK_DIR', 'S:/pipeline/mty-process-editorial/')
 sys.path.append(WORK_DIR)
 
 additional_edls = [
@@ -56,10 +55,10 @@ sys.argv = [
     ${mainTrackExcluded ? 'True' : 'False'},
     additional_edls,
     '${emailsArr}',
-    ${sendEmail ? 'True' : 'False'},
-    3,
     ${updateEpisode ? 'True' : 'False'},
-    ${publishSequence ? 'True' : 'False'}
+    3,
+    ${addWatermark ? 'True' : 'False'},
+    'True',
 ]
 
 execfile('%s/process_editorial.py' % WORK_DIR)`
@@ -70,3 +69,18 @@ result.select();
 document.execCommand('copy');
 // alert('Script copied. Paste it in the Shotgrid Python Console.')
 });
+
+// # Path to the Main EDL file
+// # Path to the Movie file
+// # Path to the Audio file
+// # Path to the ffmpeg bin
+// # Task template name for: episode, seq and shot
+// # Path to metasync
+// # Main directory
+// # Main track excluded
+// # Additional EDLs
+// # Emails
+// # Update episode
+// # Number of retries
+// # Add watermark
+// # Publish sequence
