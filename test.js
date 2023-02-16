@@ -4,8 +4,8 @@ let result = document.getElementById("result");
 
 go.addEventListener('click', () => {
 
-
   let mainDirectory = document.querySelector('#main-directory').value;
+  mainDirectory = mainDirectory.includes('Projects') ? mainDirectory.replace('Projects', 'P:').substring(1) : mainDirectory
   const rootName = document.querySelector('#root-name').value;
   const project = document.querySelector('#project').value;
   const mainTrackExcluded = document.querySelector('#main-track-excluded').checked;
@@ -52,7 +52,7 @@ for (let i = 0; i < emails.length; i ++) {
       'S:/pipeline/pythonmodules/mty-framework-ffmpeg-master/bin/win/ffmpeg.exe',
       '${project} - Episode', '${project} - Sequence', '${project} - Shot',
       'S:/pipeline/pythonmodules/mty-framework-metasync-master',
-      '${mainDirectory}',
+      MAIN_DIRECTORY,
       ${mainTrackExcluded ? 'True' : 'False'},
       additional_edls,
       '${emailsArr}',
@@ -68,5 +68,5 @@ console.log(data);
 result.value = data;
 result.select();
 document.execCommand('copy');
-alert('Script copied. Paste it in the Shotgrid Python Console.')
+// alert('Script copied. Paste it in the Shotgrid Python Console.')
 });
