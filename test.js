@@ -32,37 +32,37 @@ for (let i = 0; i < emails.length; i ++) {
   emailsArr.push(emails[i].trim())
 }
 
-  const data = `  import sys
-  import os
+const data = `  import sys
+import os
 
-  MAIN_DIRECTORY = '${mainDirectory}'
-  ROOT_NAME = '${rootName}'
+MAIN_DIRECTORY = '${mainDirectory}'
+ROOT_NAME = '${rootName}'
 
-  WORK_DIR = os.getenv('WORK_DIR', 'C:/mty-process-editorial/')
-  sys.path.append(WORK_DIR)
+WORK_DIR = os.getenv('WORK_DIR', 'C:/mty-process-editorial/')
+sys.path.append(WORK_DIR)
 
-  additional_edls = [
-    ${additionalEdlsArr != 0 ? additionalEdlsArr.join('\n') : ''}
-  ]
+additional_edls = [
+  ${additionalEdlsArr != 0 ? additionalEdlsArr.join('\n') : ''}
+]
 
-  sys.argv = [
-      '{MAIN_DIRECTORY}/{ROOT_NAME}_${mainEdl}'.format(**locals()),
-      '{MAIN_DIRECTORY}/{ROOT_NAME}.${movMp4}'.format(**locals()),
-      '{MAIN_DIRECTORY}/{ROOT_NAME}.wav'.format(**locals()),
-      'S:/pipeline/pythonmodules/mty-framework-ffmpeg-master/bin/win/ffmpeg.exe',
-      '${project} - Episode', '${project} - Sequence', '${project} - Shot',
-      'S:/pipeline/pythonmodules/mty-framework-metasync-master',
-      MAIN_DIRECTORY,
-      ${mainTrackExcluded ? 'True' : 'False'},
-      additional_edls,
-      '${emailsArr}',
-      ${sendEmail ? 'True' : 'False'},
-      3,
-      ${updateEpisode ? 'True' : 'False'},
-      ${publishSequence ? 'True' : 'False'}
-  ]
+sys.argv = [
+    '{MAIN_DIRECTORY}/{ROOT_NAME}_${mainEdl}'.format(**locals()),
+    '{MAIN_DIRECTORY}/{ROOT_NAME}.${movMp4}'.format(**locals()),
+    '{MAIN_DIRECTORY}/{ROOT_NAME}.wav'.format(**locals()),
+    'S:/pipeline/pythonmodules/mty-framework-ffmpeg-master/bin/win/ffmpeg.exe',
+    '${project} - Episode', '${project} - Sequence', '${project} - Shot',
+    'S:/pipeline/pythonmodules/mty-framework-metasync-master',
+    MAIN_DIRECTORY,
+    ${mainTrackExcluded ? 'True' : 'False'},
+    additional_edls,
+    '${emailsArr}',
+    ${sendEmail ? 'True' : 'False'},
+    3,
+    ${updateEpisode ? 'True' : 'False'},
+    ${publishSequence ? 'True' : 'False'}
+]
 
-  execfile('%s/process_editorial.py' % WORK_DIR)`
+execfile('%s/process_editorial.py' % WORK_DIR)`
 
 console.log(data);
 result.value = data;

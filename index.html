@@ -26,7 +26,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text bg-dark text-warning border-warning">Main directory</span>
+          <span class="input-group-text bg-dark text-warning border-warning">Main directory path</span>
           <input type="text" class="form-control bg-dark text-light border-light" placeholder="P:\Project\UserArea\PIPELINE\EdicionPipeline_Input\episode" id="main-directory">
         </div>
 
@@ -55,11 +55,10 @@
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text bg-dark text-warning border-warning">.mov / .mp4</span>
-          <select name="project" class="form-select bg-dark text-light border-light" id="mov-mp4">
-            <option value="mov">.mov</option>
-            <option value="mp4">.mp4</option>
-          </select>
+          <span class="input-group-text bg-dark text-warning border-warning" for="main-edl">.mov / .mp4</span>
+          <div class="input-group-text bg-dark text-warning border-light">
+            <input type="file" class="form-control bg-dark text-light border-light" placeholder=".mov / .mp4" id="mov-mp4" accept=".mov, .mp4">
+          </div>
         </div>
 
         <div class="input-group mb-3">
