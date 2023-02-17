@@ -11,19 +11,20 @@ go.addEventListener('click', () => {
   const mainTrackExcluded = document.querySelector('#main-track-excluded').checked;
   let mainEdl = document.querySelector('#main-edl').value.split('\\').at(-1);
   let additionalEdls = document.querySelector('#additional-edls').files;
-  console.log(additionalEdls.value);
   let additionalEdlsArr = [];
-  let movMp4 = document.querySelector('#mov-mp4').value;
+  let movMp4 = document.querySelector('#mov-mp4').value.split('\\').at(-1);
+  let wav = document.querySelector('#wav').value.split('\\').at(-1);
   let email = document.querySelector('#email').value;
   let addWatermark = document.querySelector('#add-watermark').checked
   const updateEpisode = document.querySelector('#update-episode').checked;
+  const publishSequence = true
 
-  let defaultEmails = `${project.toLowerCase()}-production@mighty.mx,pipeline@mighty.mx`
+  let defaultEmails = `${project.toLowerCase()}-production@mighty.mx,pipeline@mighty.mx,`
 
 mainDirectory = mainDirectory.replace(/\\/g, '/');
 
 for (let i = 0; i < additionalEdls.length; i++) {
-  additionalEdlsArr.push(`'{MAIN_DIRECTORY}/{ROOT_NAME}_${additionalEdls[i].name}'.format(**locals()),`);
+  additionalEdlsArr.push(`'{MAIN_DIRECTORY}/_${additionalEdls[i].name}'.format(**locals()),`);
 }
 
 let emails = email.split(',')
@@ -43,24 +44,24 @@ WORK_DIR = os.getenv('WORK_DIR', 'S:/pipeline/mty-process-editorial/')
 sys.path.append(WORK_DIR)
 
 additional_edls = [
-  ${additionalEdlsArr != 0 ? additionalEdlsArr.join('\n') : ''}
+${additionalEdlsArr != 0 ? additionalEdlsArr.join('\n') : ''}
 ]
 
 sys.argv = [
-    '{MAIN_DIRECTORY}/{ROOT_NAME}_${mainEdl}'.format(**locals()),
-    '{MAIN_DIRECTORY}/{ROOT_NAME}.${movMp4}'.format(**locals()),
-    '{MAIN_DIRECTORY}/{ROOT_NAME}.wav'.format(**locals()),
+    '{MAIN_DIRECTORY}/_${mainEdl}'.format(**locals()),
+    '{MAIN_DIRECTORY}/${movMp4}'.format(**locals()),
+    '{MAIN_DIRECTORY}/${wav}'.format(**locals()),
     'S:/pipeline/pythonmodules/mty-framework-ffmpeg-master/bin/win/ffmpeg.exe',
     '${project} - Episode', '${project} - Sequence', '${project} - Shot',
     'S:/pipeline/pythonmodules/mty-framework-metasync-master',
     MAIN_DIRECTORY,
     ${mainTrackExcluded ? 'True' : 'False'},
     additional_edls,
-    '${defaultEmails + ',' + emailsArr}',
+    '${defaultEmails + emailsArr}',
     ${updateEpisode ? 'True' : 'False'},
     3,
     ${addWatermark ? 'True' : 'False'},
-    'True',
+    ${publishSequence ? 'True' : 'False'},
 ]
 
 execfile('%s/process_editorial.py' % WORK_DIR)`
