@@ -6,7 +6,7 @@ go.addEventListener('click', () => {
 
   let mainDirectory = document.querySelector('#main-directory').value;
   mainDirectory = mainDirectory.includes('Projects') ? mainDirectory.replace('Projects', 'P:').substring(1) : mainDirectory
-  const rootName = document.querySelector('#root-name').value;
+  // const rootName = document.querySelector('#root-name').value;
   const project = document.querySelector('#project').value;
   const mainTrackExcluded = document.querySelector('#main-track-excluded').checked;
   let mainEdl = document.querySelector('#main-edl').value.split('\\').at(-1);
@@ -38,7 +38,6 @@ const data = `import sys
 import os
 
 MAIN_DIRECTORY = '${mainDirectory}'
-ROOT_NAME = '${rootName}'
 
 WORK_DIR = os.getenv('WORK_DIR', 'S:/pipeline/mty-process-editorial/')
 sys.path.append(WORK_DIR)
