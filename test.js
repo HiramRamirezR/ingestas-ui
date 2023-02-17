@@ -24,7 +24,7 @@ go.addEventListener('click', () => {
 mainDirectory = mainDirectory.replace(/\\/g, '/');
 
 for (let i = 0; i < additionalEdls.length; i++) {
-  additionalEdlsArr.push(`'{MAIN_DIRECTORY}/_${additionalEdls[i].name}'.format(**locals()),`);
+  additionalEdlsArr.push(`'{MAIN_DIRECTORY}/${additionalEdls[i].name}'.format(**locals()),`);
 }
 
 let emails = email.split(',')
@@ -43,13 +43,13 @@ WORK_DIR = os.getenv('WORK_DIR', 'S:/pipeline/mty-process-editorial/')
 sys.path.append(WORK_DIR)
 
 additional_edls = [
-${additionalEdlsArr != 0 ? additionalEdlsArr.join('\n') : ''}
+  ${additionalEdlsArr != 0 ? additionalEdlsArr.join('\n  ') : ''}
 ]
 
 sys.argv = [
-    '{MAIN_DIRECTORY}/_${mainEdl}'.format(**locals()),
-    '{MAIN_DIRECTORY}/_${movMp4}'.format(**locals()),
-    '{MAIN_DIRECTORY}/_${wav}'.format(**locals()),
+    '{MAIN_DIRECTORY}/${mainEdl}'.format(**locals()),
+    '{MAIN_DIRECTORY}/${movMp4}'.format(**locals()),
+    '{MAIN_DIRECTORY}/${wav}'.format(**locals()),
     'S:/pipeline/pythonmodules/mty-framework-ffmpeg-master/bin/win/ffmpeg.exe',
     '${project} - Episode', '${project} - Sequence', '${project} - Shot',
     'S:/pipeline/pythonmodules/mty-framework-metasync-master',
