@@ -47,20 +47,20 @@ additional_edls = [
 ]
 
 sys.argv = [
-    '{MAIN_DIRECTORY}/${mainEdl}'.format(**locals()),
-    '{MAIN_DIRECTORY}/${movMp4}'.format(**locals()),
-    '{MAIN_DIRECTORY}/${wav}'.format(**locals()),
-    'S:/pipeline/pythonmodules/mty-framework-ffmpeg-master/bin/win/ffmpeg.exe',
-    '${project} - Episode', '${project} - Sequence', '${project} - Shot',
-    'S:/pipeline/pythonmodules/mty-framework-metasync-master',
-    MAIN_DIRECTORY,
-    ${mainTrackExcluded ? 'True' : 'False'},
-    additional_edls,
-    '${defaultEmails + emailsArr}',
-    ${updateEpisode ? 'True' : 'False'},
-    3,
-    ${addWatermark ? 'True' : 'False'},
-    ${publishSequence ? 'True' : 'False'},
+  '{MAIN_DIRECTORY}/${mainEdl}'.format(**locals()),
+  '{MAIN_DIRECTORY}/${movMp4}'.format(**locals()),
+  '{MAIN_DIRECTORY}/${wav}'.format(**locals()),
+  'S:/pipeline/pythonmodules/mty-framework-ffmpeg-master/bin/win/ffmpeg.exe',
+  '${project} - Episode', '${project} - Sequence', '${project} - Shot',
+  'S:/pipeline/pythonmodules/mty-framework-metasync-master',
+  MAIN_DIRECTORY,
+  ${mainTrackExcluded ? 'True' : 'False'},
+  additional_edls,
+  '${defaultEmails + emailsArr}',
+  ${updateEpisode ? 'True' : 'False'},
+  3,
+  ${addWatermark ? 'True' : 'False'},
+  ${publishSequence ? 'True' : 'False'},
 ]
 
 execfile('%s/process_editorial.py' % WORK_DIR)`
