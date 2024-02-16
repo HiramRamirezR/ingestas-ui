@@ -1,2 +1,0 @@
-MAIN_DIRECTORY = 'P:\PIC\UserArea\PIPELINE\EdicionPipeline_Input\e100_PIC_v05'
-ROOT_NAME = 'e106_PIC_v05'

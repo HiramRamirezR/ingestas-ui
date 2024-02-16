@@ -40,7 +40,8 @@ import os
 MAIN_DIRECTORY = '${mainDirectory}'
 
 WORK_DIR = os.getenv('WORK_DIR', 'S:/pipeline/mty-process-editorial/')
-sys.path.append(WORK_DIR)
+if WORK_DIR not in sys.path:
+    sys.path.append(WORK_DIR)
 
 additional_edls = [
   ${additionalEdlsArr != 0 ? additionalEdlsArr.join('\n  ') : ''}
@@ -63,7 +64,11 @@ sys.argv = [
   ${publishSequence ? 'True' : 'False'},
 ]
 
-execfile('%s/process_editorial.py' % WORK_DIR)`
+editorial_file = '%s/process_editorial.py' % WORK_DIR
+
+with open(editorial_file) as f:
+  code = compile(f.read(), editorial_file, 'exec')
+  exec(code)`
 
 console.log(data);
 result.value = data;

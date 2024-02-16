@@ -3,8 +3,9 @@ import os
 
 MAIN_DIRECTORY = 'P:/CASM/ProductionArea/clientInputs/EditorialUpdate-230215'
 
-WORK_DIR = os.getenv('WORK_DIR', 'S:/pipeline/mty-process-editorial/')
-sys.path.append(WORK_DIR)
+WORK_DIR = os.getenv('WORK_DIR', 'S:/pipeline/mty-process-editorial')
+if WORK_DIR not in sys.path:
+    sys.path.append(WORK_DIR)
 
 additional_edls = [
   '{MAIN_DIRECTORY}/CASM_0700_EDL_230210_v3_TRACK2.edl'.format(**locals()),
@@ -29,4 +30,8 @@ sys.argv = [
     True,
 ]
 
-execfile('%s/process_editorial.py' % WORK_DIR)
+editorial_file = '%s/process_editorial.py' % WORK_DIR
+
+with open(editorial_file) as f:
+  code = compile(f.read(), editorial_file, 'exec')
+  exec(code)
